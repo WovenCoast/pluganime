@@ -1,8 +1,9 @@
-import EventEmitter from "events";
+import AnimePlugin from "@common/AnimePlugin";
+import AnimeIntegrationConfig from "./AnimeIntegrationConfig";
 
-class AnimeIntegration extends EventEmitter {
-  constructor() {
-    super();
+class AnimeIntegration extends AnimePlugin {
+  constructor(config: AnimeIntegrationConfig) {
+    super(config);
   }
 }
 

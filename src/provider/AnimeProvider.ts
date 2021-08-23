@@ -1,9 +1,9 @@
+import AnimePlugin from "@common/AnimePlugin";
 import AnimeProviderConfig from "./AnimeProviderConfig";
 
-class AnimeProvider {
-  config: AnimeProviderConfig;
+class AnimeProvider extends AnimePlugin {
   constructor(config: AnimeProviderConfig) {
-    this.config = config;
+    super(config)
   }
 }
 

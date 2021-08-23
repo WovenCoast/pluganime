@@ -1,9 +1,9 @@
+import AnimePlugin from "@common/AnimePlugin";
 import AnimeWatcherConfig from "./AnimeWatcherConfig";
 
-class AnimeWatcher {
-  config: AnimeWatcherConfig;
+class AnimeWatcher extends AnimePlugin {
   constructor(config: AnimeWatcherConfig) {
-    this.config = config;
+    super(config)
   }
 }
 
