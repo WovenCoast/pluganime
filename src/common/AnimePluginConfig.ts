@@ -1,1 +1,3 @@
-export default interface AnimePluginConfig {}
+export default interface AnimePluginConfig {
+  name: string
+}
