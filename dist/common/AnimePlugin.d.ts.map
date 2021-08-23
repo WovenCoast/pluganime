@@ -1,0 +1,1 @@
+{"version":3,"file":"AnimePlugin.d.ts","sourceRoot":"","sources":["../../lib/common/AnimePlugin.ts"],"names":[],"mappings":";AAAA,OAAO,YAAY,MAAM,QAAQ,CAAC;AAClC,OAAO,iBAAiB,MAAM,qBAAqB,CAAC;AAEpD,cAAM,WAAY,SAAQ,YAAY;IACpC,MAAM,EAAE,iBAAiB,CAAC;IAC1B,IAAI,EAAE,MAAM,CAAC;gBACD,MAAM,EAAE,iBAAiB;IAKrC,IAAI;CAIL;AACD,eAAe,WAAW,CAAC"}
