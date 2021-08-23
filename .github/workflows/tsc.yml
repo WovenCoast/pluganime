@@ -3,18 +3,14 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-
+name: Typescript autocompile dist
 jobs:
-  tsc:
-    name: tsc
+  check-bats-version:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: install node v12
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12
-    - name: yarn install
-      run: yarn install
-    - name: tsc
-      uses: icrawl/action-tsc@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install -g typescript
+      - run: tsc
