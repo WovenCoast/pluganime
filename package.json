@@ -1,0 +1,28 @@
+{
+  "name": "pluganime",
+  "version": "0.0.1",
+  "description": "Basically plug-and-play plugin based anime",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WovenCoast/pluganime.git"
+  },
+  "keywords": [
+    "anime",
+    "plugandplay",
+    "plug-and-play"
+  ],
+  "author": "WovenCoast",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WovenCoast/pluganime/issues"
+  },
+  "homepage": "https://github.com/WovenCoast/pluganime#readme",
+  "dependencies": {
+    "@types/node": "^16.7.1"
+  }
+}
