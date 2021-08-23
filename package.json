@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/WovenCoast/pluganime#readme",
   "dependencies": {
-    "@types/node": "^16.7.1"
+    "@types/axios": "^0.14.0",
+    "@types/node": "^16.7.1",
+    "axios": "^0.21.1"
   }
 }

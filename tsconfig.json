@@ -25,9 +25,18 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
+      "@common/*": [
+        "src/common/*"
       ],
+      "@integration/*": [
+        "src/integration/*"
+      ],
+      "@provider/*": [
+        "src/provider/*"
+      ],
+      "@watcher/*": [
+        "src/watcher/*"
+      ]
     }
   }
 }
