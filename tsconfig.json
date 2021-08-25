@@ -1,6 +1,6 @@
 {
   "include": [
-    "lib"
+    "src"
   ],
   "exclude": [
     "node_modules"
@@ -26,16 +26,16 @@
     "baseUrl": ".",
     "paths": {
       "@common/*": [
-        "lib/common/*"
+        "src/common/*"
       ],
       "@integration/*": [
-        "lib/integration/*"
+        "src/integration/*"
       ],
       "@provider/*": [
-        "lib/provider/*"
+        "src/provider/*"
       ],
       "@watcher/*": [
-        "lib/watcher/*"
+        "src/watcher/*"
       ]
     }
   }
