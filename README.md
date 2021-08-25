@@ -1,6 +1,6 @@
 ### Official builds private until alpha release
 
-// buncha those fancy ass badges
+[![CodeQL](https://github.com/WovenCoast/pluganime/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/WovenCoast/pluganime/actions/workflows/codeql-analysis.yml)
 
 # pluganime
 
