@@ -20,6 +20,14 @@ class AnimeClient extends events_1.default {
         // return true if all the promises are correctly resolved
         return promises.every(p => !!p);
     }
+    async search(query) {
+        let promises = this.plugins.map(async (plugin) => {
+            return plugin.search(query);
+        });
+        promises = await Promise.all(promises);
+        const animes = promises.flat(1);
+        return animes;
+    }
 }
 exports.default = AnimeClient;
 //# sourceMappingURL=AnimeClient.js.map

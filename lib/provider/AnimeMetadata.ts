@@ -7,6 +7,14 @@ interface BasicAnimeMetadata {
    * The year the anime was released on (used for sorting and grouping seasons together)
    */
   year: number;
+  /**
+   * Url to find this anime on whichever provider serves it
+   */
+  url: string;
+  /**
+   * The provider name of this anime
+   */
+  provider?: string;
 }
 
 enum AnimeStatus {

@@ -14,6 +14,9 @@ class AnimePlugin extends events_1.default {
         this.emit('init');
         return true;
     }
+    search(query) {
+        return Promise.resolve([]);
+    }
 }
 exports.default = AnimePlugin;
 //# sourceMappingURL=AnimePlugin.js.map
