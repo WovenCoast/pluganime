@@ -1,6 +1,7 @@
 import AnimePlugin from "@common/AnimePlugin";
 import { AnimeMetadata, BasicAnimeMetadata } from "@provider/AnimeMetadata";
 import AnimeProvider from "@provider/AnimeProvider";
+import AnimeWatcher from "@watcher/AnimeWatcher";
 import EventEmitter from "events";
 import AnimeClientConfig from "./AnimeClientConfig";
 
@@ -38,6 +39,13 @@ class AnimeClient extends EventEmitter {
     // the "as AnimePlugin" is necessary because otherwise it infers the type as AnimePlugin | undefined
     return this.plugins.find(p => p.name === name) as AnimePlugin;
   }
+  reportToWatchers(event: string, ...args: any[]) {
+    // assert AnimePlugin to be AnimeWatcher
+    (<AnimeWatcher[]> this.plugins.filter(p => p.isWatcher)).forEach((plugin: AnimeWatcher) => {
+      // if the plugin is a watcher and the _handleEvent isn't overridden, call it with the event
+      if (plugin.isWatcher && plugin._handleEvent && typeof plugin._handleEvent === "function") plugin._handleEvent(event, ...args);
+    });
+  }
   async search(query: string): Promise<BasicAnimeMetadata[]> {
     let animes: BasicAnimeMetadata[] = [];
 
@@ -67,6 +75,9 @@ class AnimeClient extends EventEmitter {
 
     // yes, all that only to just forward the query
     return await plugin.fetchMetadata(basic);
+  }
+  async addToQueue(anime: AnimeMetadata, episode: string) {
+
   }
 }
 

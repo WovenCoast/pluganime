@@ -11,14 +11,14 @@ class AnimeProvider extends AnimePlugin {
    * @param query Query with the anime to search for
    */
   async search(query: string): Promise<BasicAnimeMetadata[]> {
-    throw new Error(`${this.config.name} doesn't have a "search" method, implement it if you want this to work ♥`);
+    throw new Error(`${this.name} doesn't have a "search" method, implement it if you want this to work ♥`);
   }
   /**
    * Fetch extended information about an anime
    * @param basic Basic metadata from search query
    */
   async fetchMetadata(basic: BasicAnimeMetadata): Promise<AnimeMetadata> {
-    throw new Error(`${this.config.name} doesn't have a "fetchMetadata" method, implement it if you want this to work ♥`);
+    throw new Error(`${this.name} doesn't have a "fetchMetadata" method, implement it if you want this to work ♥`);
   }
   /**
    * Fetch the download link of an anime episode 
@@ -28,7 +28,7 @@ class AnimeProvider extends AnimePlugin {
    * @param episode The episode selected to be fetched
    */
   async fetchDownloadLink(anime: AnimeMetadata, episode: string): Promise<string> {
-    throw new Error(`${this.config.name} doesn't have a "fetchDownloadLink" method, implement it if you want this to work ♥`);
+    throw new Error(`${this.name} doesn't have a "fetchDownloadLink" method, implement it if you want this to work ♥`);
   }
 }
 

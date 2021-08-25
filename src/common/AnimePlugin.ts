@@ -5,10 +5,12 @@ import AnimePluginConfig from "./AnimePluginConfig";
 class AnimePlugin extends EventEmitter {
   config: AnimePluginConfig;
   name: string;
+  isWatcher: boolean;
   constructor(config: AnimePluginConfig) {
     super()
     this.config = config;
     this.name = config.name;
+    this.isWatcher = this.config.isWatcher || false;
   }
   init() {
     this.emit('init');

@@ -1,3 +1,4 @@
 export default interface AnimePluginConfig {
-  name: string
+  name: string;
+  isWatcher?: boolean;
 }
