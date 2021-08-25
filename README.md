@@ -1,4 +1,4 @@
-### Private until alpha release
+### Official builds private until alpha release
 
 // buncha those fancy ass badges
 
@@ -6,11 +6,10 @@
 
 # Todo
 
-- [ ] Make class for initial client that interfaces everything
-- [ ] Make class for AnimeProvider plugin (basically the API to access the anime in an anime website)
-- [ ] Make class for AnimeWatcher plugin (reports to stuff like myanimelist or discord rpc or whatever else there is)
-- [ ] Make class for AnimeIntegration plugin (website, electron app, whatever else)
-- Note to self: its a bit like express plugins like session, passport, integration stuff :D
+- [x] Make class for initial client that interfaces everything
+- [x] Make base class AnimePlugin to extend everything else out of
+- [x] Make class for AnimeProvider plugin (basically the API to access the anime in an anime website)
+- [ ] Make class for AnimeWatcher plugin (basically the anime player, could also be something that reports to stuff like myanimelist or discord rpc or whatever else there is)
   - [ ] Allow optional reporting back for anime watcher plugins
 
 oh and, everything is in typescript ♥
