@@ -2,6 +2,7 @@ import AnimePlugin from "@common/AnimePlugin";
 import { AnimeMetadata, BasicAnimeMetadata } from "@provider/AnimeMetadata";
 import AnimeProvider from "@provider/AnimeProvider";
 import AnimeWatcher from "@watcher/AnimeWatcher";
+import AnimeWatcherEvents from "@watcher/AnimeWatcherEvents";
 import EventEmitter from "events";
 import AnimeClientConfig from "./AnimeClientConfig";
 
@@ -9,7 +10,7 @@ class AnimeClient extends EventEmitter {
   plugins: AnimePlugin[];
   constructor(config: AnimeClientConfig | AnimePlugin[]) {
     super();
-    // I know that this is super jank, I'm not even gonna try to explain.....
+    // I know that this is super jank, if the config is an array then only plugins have been passed in
     if (Array.isArray(config)) config = { plugins: config };
     this.plugins = config.plugins;
 
@@ -39,8 +40,9 @@ class AnimeClient extends EventEmitter {
     // the "as AnimePlugin" is necessary because otherwise it infers the type as AnimePlugin | undefined
     return this.plugins.find(p => p.name === name) as AnimePlugin;
   }
-  reportToWatchers(event: string, ...args: any[]) {
-    // assert AnimePlugin to be AnimeWatcher
+  // https://www.typescriptlang.org/docs/handbook/enums.html#enums-at-compile-time
+  reportToWatchers(event: keyof typeof AnimeWatcherEvents, ...args: any[]) {
+    // https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions
     (<AnimeWatcher[]> this.plugins.filter(p => p.isWatcher)).forEach((plugin: AnimeWatcher) => {
       // if the plugin is a watcher and the _handleEvent isn't overridden, call it with the event
       if (plugin.isWatcher && plugin._handleEvent && typeof plugin._handleEvent === "function") plugin._handleEvent(event, ...args);
@@ -68,10 +70,10 @@ class AnimeClient extends EventEmitter {
     // basic.provider is an optional property
     if (!basic.provider) throw new Error(`Field "provider" doesn't exist in basic metadata of "${basic.name}", if you fetched the basic metadata directly from the plugin then use its fetchMetadata method to get rid of this error!`);
 
+    // https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions
     // AnimeProvider as AnimePlugin doesn't have the fetchMetadata method
-    const plugin: AnimeProvider = this.getPlugin(basic.provider) as AnimeProvider;
+    const plugin: AnimeProvider = <AnimeProvider>this.getPlugin(basic.provider);
     if (!plugin) throw new Error(`Plugin "${basic.provider}" doesn't exist, but "${basic.name}" was provided by "${basic.provider}" 🤔`);
-    if (!plugin.fetchMetadata) throw new Error(`Plugin "${plugin.name}" doesn't have the "fetchMetadata" method :(`);
 
     // yes, all that only to just forward the query
     return await plugin.fetchMetadata(basic);
