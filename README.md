@@ -12,7 +12,7 @@ Plugin based plug-and-play anime :D
 
 # Contributing
 
-- Fork this repository
+- Fork [the official repository](https://github.com/WovenCoast/pluganime)
 - Run `yarn install` (if you don't have yarn, install it with `npm i -g yarn`)
 - Code your heart out ♥
 - ~Run `npm test` to make sure the tests are running fine~
