@@ -1,7 +1,7 @@
 {
   "name": "pluganime",
   "version": "0.0.1",
-  "description": "Basically plug-and-play plugin based anime",
+  "description": "Plugin based plug-and-play anime",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
