@@ -2,7 +2,7 @@
 
 # pluganime
 
-![Discord](https://img.shields.io/discord/880416191938703400?label=Talk%20to%20us%21&logo=discord&logoColor=white) ![GitHub last commit](https://img.shields.io/github/last-commit/WovenCoast/pluganime?logo=github) [![CodeQL](https://github.com/WovenCoast/pluganime/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/WovenCoast/pluganime/actions/workflows/codeql-analysis.yml) \*more of them fancy badges coming soon 😉\*
+[![Discord](https://img.shields.io/discord/880416191938703400?label=Talk%20to%20us%21&logo=discord&logoColor=white)](https://discord.gg/APnu3XCPas) [![GitHub last commit](https://img.shields.io/github/last-commit/WovenCoast/pluganime?logo=github)](https://github.com/WovenCoast/pluganime) ![CodeQL](https://github.com/WovenCoast/pluganime/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/WovenCoast/pluganime/actions/workflows/codeql-analysis.yml) \*more of them fancy badges coming soon 😉\*
 
 Plugin based plug-and-play anime :D
 
@@ -16,7 +16,7 @@ Plugin based plug-and-play anime :D
 - Run `yarn install` (if you don't have yarn, install it with `npm i -g yarn`)
 - Code your heart out ♥
 - ~Run `npm test` to make sure the tests are running fine~
-- Submit a [pull request](https://github.com/WovenCoast/pluganime/compare) and let us know [on our discord]()
+- Submit a [pull request](https://github.com/WovenCoast/pluganime/compare) and let us know [on our discord](https://discord.gg/APnu3XCPas)
 
 # Maintainers
 
