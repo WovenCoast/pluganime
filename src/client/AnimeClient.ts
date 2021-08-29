@@ -5,14 +5,19 @@ import AnimeWatcher from "@watcher/AnimeWatcher";
 import AnimeWatcherEvents from "@watcher/AnimeWatcherEvents";
 import EventEmitter from "events";
 import AnimeClientConfig from "./AnimeClientConfig";
+import { DownloadInfo } from "../downloader/DownloadInfo";
+import AnimeDownloader from "src/downloader/AnimeDownloader";
 
 class AnimeClient extends EventEmitter {
   plugins: AnimePlugin[];
+  download: AnimeDownloader;
   constructor(config: AnimeClientConfig | AnimePlugin[]) {
     super();
     // I know that this is super jank, if the config is an array then only plugins have been passed in
     if (Array.isArray(config)) config = { plugins: config };
     this.plugins = config.plugins;
+
+    this.download = new AnimeDownloader(this, { queue: config.downloadQueue || [], downloadPath: config.downloadPath || process.cwd() });
 
     // check if each plugin has a unique name
     const pluginNames = this.plugins.map(p => p.name);
@@ -51,25 +56,15 @@ class AnimeClient extends EventEmitter {
   async search(query: string): Promise<BasicAnimeMetadata[]> {
     let animes: BasicAnimeMetadata[] = [];
 
-    // y'all better appreciate me writing a whole ass old styled for loop just because the types were all messed up 🙄
-    for (let i = 0; i < this.plugins.length; i++) {
-      let plugin: AnimePlugin = this.plugins[i];
-      // search for the anime from the plugin
-      const animesFromPlugin: BasicAnimeMetadata[] = (await plugin.search(query)).map(anime => {
-        // assign the provider to be the plugin name
-        anime.provider = plugin.name;
-        return anime;
-      });
-      // add it to the existing list of animes
-      animes = [...animes, ...animesFromPlugin];
-    }
+    // basically an async/await friendly forEach loop
+    await Promise.all(this.plugins.map(async plugin => {
+      // append to the animes with the ones from the plugin
+      animes = [...animes, ...(await plugin.search(query))];
+    }));
     
     return animes;
   }
   async fetchMetadata(basic: BasicAnimeMetadata): Promise<AnimeMetadata> {
-    // basic.provider is an optional property
-    if (!basic.provider) throw new Error(`Field "provider" doesn't exist in basic metadata of "${basic.name}", if you fetched the basic metadata directly from the plugin then use its fetchMetadata method to get rid of this error!`);
-
     // https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions
     // AnimeProvider as AnimePlugin doesn't have the fetchMetadata method
     const plugin: AnimeProvider = <AnimeProvider>this.getPlugin(basic.provider);
@@ -78,8 +73,35 @@ class AnimeClient extends EventEmitter {
     // yes, all that only to just forward the query
     return await plugin.fetchMetadata(basic);
   }
-  async addToQueue(anime: AnimeMetadata, episode: string) {
-
+  /**
+   * Adds to the queue of things to be downloaded
+   * @param anime The anime to add to the download queue
+   * @param episode THe episode to download, if not provided the entire anime will be added to the queue
+   */
+  async addToQueue(anime: AnimeMetadata, episode?: string) {
+    // just some repetitive code
+    const infoDefaults = {
+      provider: anime.provider,
+      anime,
+      progress: 0,
+      evaluated: false
+    }
+    // if the episode is there then just push that one to the queue
+    if (episode) this.download.queue.push({
+      ...infoDefaults,
+      episode,
+    });
+    else {
+      // otherwise push every episode into the queue
+      anime.episodes.forEach(ep => {
+        this.download.queue.push({
+          ...infoDefaults,
+          episode: ep,
+        });
+      });
+    }
+    // emit the event to the client event watchers
+    this.emit('queueUpdated', this.download.queue);
   }
 }
 

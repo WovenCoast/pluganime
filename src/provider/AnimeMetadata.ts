@@ -1,5 +1,9 @@
 interface BasicAnimeMetadata {
   /**
+   * The provider name of this anime
+   */
+  provider: string;
+  /**
    * The name of the anime
    */
   name: string;
@@ -12,9 +16,9 @@ interface BasicAnimeMetadata {
    */
   url: string;
   /**
-   * The provider name of this anime
+   * Not required but a thumbnail to get a better idea of this anime
    */
-  provider?: string;
+  thumbnail?: string;
 }
 
 enum AnimeStatus {
